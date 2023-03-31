@@ -44,4 +44,13 @@ public class DateUtility {
             return null;
         }
     }
+
+    /**
+     * A date that has expired is its time less than the current time
+     *
+     * @param time  in milliseconds; negative value (less than zero) for non-expiration date
+     */
+    public static boolean hasExpired(long time) {
+        return time >= 0 && time < System.currentTimeMillis();
+    }
 }
