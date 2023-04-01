@@ -46,14 +46,14 @@ public class FileUtility {
         }
     }
 
-    public static void delete(@Nonnull File file) {
+    public static void deleteIfExists(@Nonnull File file) {
         if (!file.exists()) return;
         if (!file.isDirectory()) {
             file.delete();
             return;
         }
         File[] files = file.listFiles();
-        if (files != null) for (File f : files) delete(f);
+        if (files != null) for (File f : files) deleteIfExists(f);
         file.delete();
     }
 }
