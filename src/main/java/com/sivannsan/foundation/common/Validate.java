@@ -1,4 +1,4 @@
-package com.sivannsan.foundation;
+package com.sivannsan.foundation.common;
 
 import com.sivannsan.foundation.annotation.Nonnull;
 

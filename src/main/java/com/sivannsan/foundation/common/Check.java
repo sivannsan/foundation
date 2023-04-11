@@ -1,4 +1,4 @@
-package com.sivannsan.foundation;
+package com.sivannsan.foundation.common;
 
 public class Check {
     public static boolean inBound(Object[] a, int index) {
