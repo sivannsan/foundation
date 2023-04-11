@@ -1,4 +1,6 @@
 package com.sivannsan.foundation;
 
-public class Foundation {
+public final class Foundation {
+    private Foundation() {
+    }
 }

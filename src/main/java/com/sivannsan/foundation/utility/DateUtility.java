@@ -7,7 +7,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
-public class DateUtility {
+public final class DateUtility {
+    private DateUtility() {
+    }
+
     /**
      * Pattern:
      * - yyyy   : 1970
