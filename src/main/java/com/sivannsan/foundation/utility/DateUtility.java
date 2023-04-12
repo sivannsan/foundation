@@ -1,59 +1,56 @@
 package com.sivannsan.foundation.utility;
 
 import com.sivannsan.foundation.annotation.Nonnull;
+import com.sivannsan.foundation.common.Log;
+import com.sivannsan.foundation.common.Validate;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
+@SuppressWarnings("unused")
 public final class DateUtility {
     private DateUtility() {
     }
 
     /**
-     * Pattern:
-     * - yyyy   : 1970
-     * - MM     : 12
-     * - dd     : 31
-     * - HH     : 24
-     * - mm     : 59
-     * - ss     : 59
-     * - sss    : 999
+     * List of pattern examples
+     * <p> - yyyy   : 1970
+     * <p> - MM     : 12
+     * <p> - dd     : 31
+     * <p> - HH     : 24
+     * <p> - mm     : 59
+     * <p> - ss     : 59
+     * <p> - sss    : 999
      */
     @Nonnull
-    public static String toString(@Nonnull Date date, @Nonnull String pattern) {
-        SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+    public static String format(@Nonnull Date date, @Nonnull String pattern) {
+        SimpleDateFormat formatter = new SimpleDateFormat(Validate.nonnull(pattern));
         formatter.setTimeZone(TimeZone.getTimeZone("GMT"));
-        return formatter.format(date);
+        return formatter.format(Validate.nonnull(date));
     }
 
     /**
-     * Pattern:
-     * - yyyy   : 1970
-     * - MM     : 12
-     * - dd     : 31
-     * - HH     : 24
-     * - mm     : 59
-     * - ss     : 59
-     * - sss    : 999
+     * List of pattern examples
+     * <p> - yyyy   : 1970
+     * <p> - MM     : 12
+     * <p> - dd     : 31
+     * <p> - HH     : 24
+     * <p> - mm     : 59
+     * <p> - ss     : 59
+     * <p> - sss    : 999
+     * @return  null if parse fail
      */
-    public static Date fromString(@Nonnull String date, @Nonnull String pattern) {
-        SimpleDateFormat format = new SimpleDateFormat(pattern);
+    public static Date parse(@Nonnull String date, @Nonnull String pattern) {
+        SimpleDateFormat format = new SimpleDateFormat(Validate.nonnull(pattern));
         format.setTimeZone(TimeZone.getTimeZone("GMT"));
         try {
-            return format.parse(date);
+            return format.parse(Validate.nonnull(date));
         } catch (ParseException e) {
+            Log.writeLine("A ParseException occurs while parsing a date from a string with pattern");
+            e.printStackTrace();
             return null;
         }
-    }
-
-    /**
-     * A date that has expired is its time less than the current time
-     *
-     * @param time  in milliseconds; negative value (less than zero) for non-expiration date
-     */
-    public static boolean hasExpired(long time) {
-        return time >= 0 && time < System.currentTimeMillis();
     }
 }

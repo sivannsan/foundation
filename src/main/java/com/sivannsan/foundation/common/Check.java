@@ -2,35 +2,44 @@ package com.sivannsan.foundation.common;
 
 import java.util.Collection;
 
+@SuppressWarnings("unused")
 public class Check {
-    public static <CS extends CharSequence> boolean isInBounds(CS charSequence, int index) {
-        return charSequence != null && 0 <= index && index < charSequence.length();
+    private Check() {
     }
 
-    public static <A> boolean isInBounds(A[] array, int index) {
-        return array != null && 0 <= index && index < array.length;
+    public static boolean equals(Object a, Object b) {
+        if (a == b) return true;
+        return a != null && a.equals(b);
     }
 
-    public static <C extends Collection<?>> boolean isInBounds(C collection, int index) {
-        return collection != null && 0 <= index && index < collection.size();
+    public static <CS extends CharSequence> boolean withinBounds(CS charSequence, int index) {
+        return charSequence != null && between(-1, charSequence.length(), index, false);
     }
 
-    public static boolean isBetween(int start, int end, int element, boolean inclusive) {
+    public static <A> boolean withinBounds(A[] array, int index) {
+        return array != null && between(-1, array.length, index, false);
+    }
+
+    public static <C extends Collection<?>> boolean withinBounds(C collection, int index) {
+        return collection != null && between(-1, collection.size(), index, false);
+    }
+
+    public static boolean between(int start, int end, int element, boolean inclusive) {
         if (start < element && element < end) return true;
         return inclusive && (start == element || element == end);
     }
 
-    public static boolean isBetween(long start, long end, long element, boolean inclusive) {
+    public static boolean between(long start, long end, long element, boolean inclusive) {
         if (start < element && element < end) return true;
         return inclusive && (start == element || element == end);
     }
 
-    public static boolean isBetween(float start, float end, float element, boolean inclusive) {
+    public static boolean between(float start, float end, float element, boolean inclusive) {
         if (start < element && element < end) return true;
         return inclusive && (start == element || element == end);
     }
 
-    public static boolean isBetween(double start, double end, double element, boolean inclusive) {
+    public static boolean between(double start, double end, double element, boolean inclusive) {
         if (start < element && element < end) return true;
         return inclusive && (start == element || element == end);
     }
