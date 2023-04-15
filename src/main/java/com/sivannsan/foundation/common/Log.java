@@ -27,7 +27,7 @@ public final class Log {
      * Writes String.valueOf(o) and the line separator string to the "standard" output stream
      */
     public static void writeLine(Object o) {
-        System.out.print(o);
+        System.out.println(o);
     }
 
     /**
