@@ -2,7 +2,6 @@ package com.sivannsan.foundation.utility;
 
 import com.sivannsan.foundation.annotation.Nonnull;
 import com.sivannsan.foundation.common.Log;
-import com.sivannsan.foundation.common.Validate;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,9 +25,9 @@ public final class DateUtility {
      */
     @Nonnull
     public static String format(@Nonnull Date date, @Nonnull String pattern) {
-        SimpleDateFormat formatter = new SimpleDateFormat(Validate.nonnull(pattern));
+        SimpleDateFormat formatter = new SimpleDateFormat(pattern);
         formatter.setTimeZone(TimeZone.getTimeZone("GMT"));
-        return formatter.format(Validate.nonnull(date));
+        return formatter.format(date);
     }
 
     /**
@@ -43,10 +42,10 @@ public final class DateUtility {
      * @return  null if parse fail
      */
     public static Date parse(@Nonnull String date, @Nonnull String pattern) {
-        SimpleDateFormat format = new SimpleDateFormat(Validate.nonnull(pattern));
+        SimpleDateFormat format = new SimpleDateFormat(pattern);
         format.setTimeZone(TimeZone.getTimeZone("GMT"));
         try {
-            return format.parse(Validate.nonnull(date));
+            return format.parse(date);
         } catch (ParseException e) {
             Log.writeLine("A ParseException occurs while parsing a date from a string with pattern");
             e.printStackTrace();

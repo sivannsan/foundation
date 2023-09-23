@@ -6,22 +6,30 @@ import com.sivannsan.foundation.annotation.Nonnull;
 public final class Validate {
     private Validate() {
     }
-    
-    @Nonnull
-    public static <T> T nonnull(T t) {
-        if (t != null) return t;
-        throw new RuntimeException("An object is null!");
+
+    public static void valid(boolean condition, @Nonnull String message) {
+        if (condition) return;
+        throw new RuntimeException(message);
+    }
+
+    public static void valid(boolean condition) {
+        valid(condition, "A condition is not valid!");
     }
 
     @Nonnull
     public static <T> T nonnull(T t, @Nonnull String message) {
-        if (t != null) return t;
-        throw new RuntimeException(nonnull(message));
+        valid(t != null, message);
+        return t;
+    }
+    
+    @Nonnull
+    public static <T> T nonnull(T t) {
+        return nonnull(t, "An object is null!");
     }
 
     public static int nonnegative(int n, @Nonnull String message) {
-        if (n >= 0) return n;
-        throw new RuntimeException(nonnull(message));
+        valid(n >= 0, message);
+        return n;
     }
 
     public static int nonnegative(int n) {
@@ -29,8 +37,8 @@ public final class Validate {
     }
 
     public static long nonnegative(long n, @Nonnull String message) {
-        if (n >= 0) return n;
-        throw new RuntimeException(nonnull(message));
+        valid(n >= 0, message);
+        return n;
     }
 
     public static long nonnegative(long n) {
@@ -38,8 +46,8 @@ public final class Validate {
     }
 
     public static float nonnegative(float n, @Nonnull String message) {
-        if (n >= 0) return n;
-        throw new RuntimeException(nonnull(message));
+        valid(n >= 0, message);
+        return n;
     }
 
     public static float nonnegative(float n) {
@@ -47,8 +55,8 @@ public final class Validate {
     }
 
     public static double nonnegative(double n, @Nonnull String message) {
-        if (n >= 0) return n;
-        throw new RuntimeException(nonnull(message));
+        valid(n >= 0, message);
+        return n;
     }
 
     public static double nonnegative(double n) {
